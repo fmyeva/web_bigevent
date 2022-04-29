@@ -11,10 +11,12 @@ $.ajaxPrefilter(function(options){
             //无论成功还是失败最终都会调用complete函数
             //在回调函数中，可以使用res.responseJSON拿到服务器响应回来的数据
      options.complete = function(res){
-                if(res.responseJSON.status === 1 && res.responseJSON.message === '身份验证失败！')
-                //强制清空token，跳转登录页面
-                localStorage.removeItem('token')
-                location.href = 'login.html'
-            }
+        if(res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！'){
+            //强制清空token，跳转登录页面
+            localStorage.removeItem('token')
+           location.href = 'login.html'
+        }
+      
+    }
     
 })
